@@ -1,0 +1,28 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (too large for git)
+data/
+
+# Saved model weights
+*.pth
+
+# VS Code
+.vscode/
+
+# uv
+.python-version
+uv.lock
+
+# OS
+.DS_Store
+Thumbs.db
