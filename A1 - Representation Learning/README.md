@@ -1,5 +1,16 @@
 # A1: Representation Learning
 
+## Overview
+This project explores the evolution of deep learning architectures for image classification, tracing from AlexNet (2012) to Vision Transformers (2020). All models are trained and evaluated on CIFAR-10 (10 classes, 60,000 images) to compare performance, parameter efficiency, and training speed across different architecture designs.
+
+## Models
+- **AlexNet** — Pioneer deep CNN with ReLU, Dropout, and Local Response Normalization
+- **GoogLeNet** — Inception modules for multi-scale feature learning with auxiliary classifiers
+- **ResNet-18** — Residual connections to solve vanishing gradient in deep networks
+- **ViT-Small** — Vision Transformer from scratch using patch embeddings
+- **ResNet-18 pretrained** — ImageNet pretrained ResNet fine-tuned on CIFAR-10
+- **ViT-B/16 pretrained** — ImageNet pretrained Vision Transformer fine-tuned on CIFAR-10
+
 ## Training Commands
 
 ```bash
@@ -25,7 +36,7 @@ python run.py --model vit_b16_pretrained --dataset cifar10 --epochs 15 --batch_s
 ## Discussion
 
 **Which model performed best and why?**
-ViT-B/16 pretrained achieved the highest test accuracy at 95.08%. This is because it was pretrained on ImageNet with 1.2M images, giving it rich feature representations that transfer well to CIFAR-10. The two-stage fine-tuning strategy — first training only the classification head, then fine-tuning all layers — prevented catastrophic forgetting of pretrained features while adapting to the 10-class task.
+ViT-B/16 pretrained achieved the highest test accuracy at 95.08%. This is because it was pretrained on ImageNet with 1.2M images, giving it rich feature representations that transfer well to CIFAR-10. The two-stage fine-tuning strategy — first training only the classification head, then fine-tuning all layers: prevented catastrophic forgetting of pretrained features while adapting to the 10-class task.
 
 **CNN vs Transformer architectures:**
 CNNs have built-in inductive biases such as locality and translation invariance, making them efficient on small datasets. This is why GoogLeNet from scratch (84.24%) and ResNet-18 from scratch (78.47%) both outperform ViT-Small from scratch (59.75%) — ViT has no such biases and needs much more data to learn them. However, when pretrained on large data, ViT-B/16 dominates all CNN models significantly.
