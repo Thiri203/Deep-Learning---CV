@@ -31,12 +31,12 @@ python run.py --model vit_b16_pretrained --dataset cifar10 --epochs 15 --batch_s
 | ResNet-18 (scratch) | 11,173,962 | 78.47% | 37.5s | CNN + Skip connections |
 | ResNet-18 (pretrained) | 11,181,642 | 79.93% | 28.8s | CNN + Skip connections |
 | ViT-Small (scratch) | 1,205,898 | 59.75% | 24.8s | Transformer |
-| ViT-B/16 (pretrained) | 85,806,346 | 95.08% | 344s | Transformer |
+| ViT-B/16 (pretrained) | 85,806,346 | 95.59% | 344s | Transformer |
 
 ## Discussion
 
 **Which model performed best and why?**
-ViT-B/16 pretrained achieved the highest test accuracy at 95.08%. This is because it was pretrained on ImageNet with 1.2M images, giving it rich feature representations that transfer well to CIFAR-10. The two-stage fine-tuning strategy — first training only the classification head, then fine-tuning all layers: prevented catastrophic forgetting of pretrained features while adapting to the 10-class task.
+ViT-B/16 pretrained achieved the highest test accuracy at 95.59%. This is because it was pretrained on ImageNet with 1.2M images, giving it rich feature representations that transfer well to CIFAR-10. The two-stage fine-tuning strategy — first training only the classification head, then fine-tuning all layers: prevented catastrophic forgetting of pretrained features while adapting to the 10-class task.
 
 **CNN vs Transformer architectures:**
 CNNs have built-in inductive biases such as locality and translation invariance, making them efficient on small datasets. This is why GoogLeNet from scratch (84.24%) and ResNet-18 from scratch (78.47%) both outperform ViT-Small from scratch (59.75%) — ViT has no such biases and needs much more data to learn them. However, when pretrained on large data, ViT-B/16 dominates all CNN models significantly.
@@ -49,3 +49,7 @@ ResNet-18 from scratch reaches 78.47% with 11M parameters in just 37.5s per epoc
 
 **Pretrained CNN vs Pretrained Transformer on small dataset:**
 ResNet-18 pretrained only reached 79.93% while ViT-B/16 pretrained reached 95.08%. This suggests that Transformer-based models, when pretrained on sufficient data, learn more generalizable and transferable representations than CNNs. The global attention mechanism in ViT captures long-range dependencies that are harder to learn with local convolutions alone.
+
+## Model Weights
+Pretrained weights are available on Google Drive (too large for GitHub):
+[Download weights](https://drive.google.com/drive/folders/1zt9b1MztPmuBYtw3JolfHUBBvWoeA8BD?usp=sharing)
