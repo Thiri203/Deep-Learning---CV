@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+
+# Weights (too large for git)
+*.weights
+*.pt
+*.pth
+
+# Dataset
+data/
+coco/
+
+# Results
+detection_*.jpg
+*.zip
+*.tar.gz
+
+# Env
+.env
+venv/
+.venv/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+desktop.ini
