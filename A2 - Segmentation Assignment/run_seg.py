@@ -130,8 +130,11 @@ class UNetResNet18(nn.Module):
         x = self.up2(x);  x = self._cat(x, s2);  x = self.dec2(x)
         x = self.up1(x);  x = self._cat(x, s1);  x = self.dec1(x)
         x = self.up0(x);  x = self.dec0(x)
-
+# ensure output matches input resolution
+        if x.shape[2:] != (128, 128):
+            x = F.interpolate(x, size=(128, 128), mode='bilinear', align_corners=False)
         return self.output(x)
+
 
     def _cat(self, x, skip):
         if x.shape != skip.shape:

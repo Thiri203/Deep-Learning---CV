@@ -143,6 +143,7 @@ def patched_create_modules(blocks):
 # SECTION 2: MyDarknet — supports both YOLOv3 and YOLOv4
 # ─────────────────────────────────────────────────────────────
 
+from run_seg import IMG_SIZE
 from util import predict_transform, load_classes
 
 class MyDarknet(nn.Module):
@@ -306,7 +307,7 @@ def compute_loss(pred, labels, bboxes, device, loss_type="iou"):
     bboxes  : GT boxes      [B, 450, 4]
     loss_type: 'iou' or 'ciou'
     """
-    
+
     pred = pred.float().to(device)
     labels = labels.float().to(device)
     bboxes = bboxes.float().to(device)
@@ -315,8 +316,8 @@ def compute_loss(pred, labels, bboxes, device, loss_type="iou"):
     noobj_mask = labels[..., 4] == 0
 
     # Box loss
-    pred_boxes = pred[..., :4][obj_mask]
-    gt_boxes = labels[..., :4][obj_mask]
+    pred_boxes = pred[..., :4][obj_mask] / IMG_SIZE
+    gt_boxes = labels[..., :4][obj_mask] / IMG_SIZE
 
     if pred_boxes.shape[0] == 0:
         box_loss = torch.tensor(0.0, device=device)
@@ -689,9 +690,14 @@ def build_dataloader(dataset_name, split="train", batch_size=4):
         )
     transform = get_transform(train=(split == "train"))
     dataset = CustomCoco(img_dir, ann_file, transform=transform)
+
+    # Subset for faster training
+    from torch.utils.data import Subset
+    dataset = Subset(dataset, list(range(500)))
+
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=(split == "train"),
-                        num_workers=2, collate_fn=collate_fn, pin_memory=True)
-    print(f"Dataset: COCO val | {len(dataset)} images | batch_size={batch_size}")
+                    num_workers=0, collate_fn=collate_fn, pin_memory=False)
+    print(f"Dataset: COCO val (500 subset) | batch_size={batch_size}")
     return loader
 
 
