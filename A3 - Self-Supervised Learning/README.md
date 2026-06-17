@@ -112,16 +112,38 @@ DINO pretraining is the better choice for this scenario. With only 500 labeled s
 ## Visualizations
 
 ### Loss Curves
-- `figures/simclr_loss.png` — SimCLR NT-Xent loss over 10 epochs
-- `figures/dino_loss.png` — DINO cross-entropy loss over 10 epochs
-- `figures/dino_no_center_loss.png` — DINO without centering (collapse visible)
-- `figures/dino_no_local_loss.png` — DINO without local crops
-- `figures/dino_center_norm.png` — Center vector norm over training epochs
+
+**SimCLR Loss**
+![SimCLR Loss](figures/simclr_loss.png)
+
+**DINO Loss (default)**
+![DINO Loss](figures/dino_loss.png)
+
+**DINO Center Norm**
+![DINO Center Norm](figures/dino_center_norm.png)
+
+**DINO No Centering Loss (collapse visible — loss drops to ~0)**
+![DINO No Center Loss](figures/dino_no_center_loss.png)
+
+**DINO No Local Crops Loss**
+![DINO No Local Loss](figures/dino_no_local_loss.png)
+
+**MAE Loss Curves**
+![MAE 25 Loss](figures/mae_25_loss.png)
+![MAE 50 Loss](figures/mae_50_loss.png)
+![MAE 75 Loss](figures/mae_75_loss.png)
 
 ### Attention Maps
-- `figures/dino_attention.png` — DINO default attention heads (5 images x all heads)
-- `figures/dino_no_center_attention.png` — Attention maps without centering
-- `figures/dino_no_local_attention.png` — Attention maps without local crops
 
-### t-SNE
-- `figures/tsne_comparison.png` — SimCLR vs DINO feature space comparison
+**DINO Default — [CLS] token attention heads per image**
+![DINO Attention](figures/dino_attention.png)
+
+**DINO No Centering — attention maps after collapse**
+![DINO No Center Attention](figures/dino_no_center_attention.png)
+
+**DINO No Local Crops — attention maps without multi-crop**
+![DINO No Local Attention](figures/dino_no_local_attention.png)
+
+### t-SNE Feature Space Comparison
+
+![t-SNE Comparison](figures/tsne_comparison.png)
