@@ -1,0 +1,17 @@
+# Data (too large)
+data/
+
+# Checkpoints (too large)
+saved/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+run_log.txt
+
+# OS
+.DS_Store
+Thumbs.db
