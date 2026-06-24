@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local environment/config
+.env
+.env.*
+
+# Datasets
+data/
+
+# Model checkpoints
+saved/
+
+# Generated visualizations needed by the README should be committed.
+outputs/*
+!outputs/*.png
+
+# Local input images
+my_face.jpg
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs
+*.log
