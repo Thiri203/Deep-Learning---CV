@@ -84,10 +84,10 @@ The cosine beta schedule was implemented in `run.py` using the Nichol and Dhariw
 
 ![Noise schedule comparison](outputs/noise_schedule_comparison.png)
 
-| Schedule | Loss | Visual quality (1-5) | Notes |
+| Schedule | Loss at epoch 10 | Visual quality (1-5) | Notes |
 |---|---:|---:|---|
-| Linear | 0.0258 at epoch 10 | 4 | clear MNIST-like samples, but training took longer |
-| Cosine | 0.0400 at epoch 20 | 4 | clear samples; preserves signal longer at early timesteps |
+| Linear | 0.0258  | 4 | clear MNIST-like samples, but training took longer |
+| Cosine | 0.0427  | 4 | clear samples; preserves signal longer at early timesteps |
 
 Linear DDPM samples:
 
