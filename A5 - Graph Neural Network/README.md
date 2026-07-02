@@ -55,7 +55,4 @@
 
 ## Discussion
 
-_When would you use a GNN instead of an MLP? Give a concrete example from biology,
-traffic routing, or social networks. (2–3 sentences)_
-
-[your answer here]
+Use a GNN instead of an MLP when the relationships between nodes carry information the node features alone don't. An MLP only looks at each node in isolation, so it misses that context completely. A good example is predicting whether a protein is linked to a disease: two proteins can have very similar raw features but play different biological roles depending on what they interact with, and a GNN picks up on that by propagating information across the protein interaction network.
